@@ -1,5 +1,7 @@
 package br.com.lelo.precos.precocarga.consumer;
 
+import java.util.UUID;
+
 import javax.annotation.PostConstruct;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -24,7 +26,7 @@ public class PrecoCargaPdvConsumer {
 
 	@PostConstruct
 	public void go() {
-		properties.getProperties().put("group.id", this.getClass().getSimpleName());
+		properties.getProperties().put("group.id", UUID.randomUUID().toString());
 		String topicName = TopicEnum.TOPIC_PDV.getTopicName();
 
 		new Thread(new Runnable() {
